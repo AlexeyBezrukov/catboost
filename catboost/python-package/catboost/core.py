@@ -392,6 +392,8 @@ class Pool(_PoolBase):
         """
         Check label length and dimension.
         """
+        if not isinstance((samples_count[0], ARRAY_TYPES)):
+            samples_count = [samples_count]
         if len(label) != samples_count:
             raise CatboostError("Length of label={} and length of data={} is different.".format(len(label), samples_count))
         if isinstance(label[0], Iterable) and not isinstance(label[0], STRING_TYPES):
